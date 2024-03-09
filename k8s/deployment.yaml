@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service--notification-deployment
+  namespace: shoes-eks
+spec:
+  selector:
+    matchLabels:
+      app: service--notification
+  template: 
+    metadata:
+        name: service--notification
+        labels:
+          app: service--notification
+    spec:
+        containers:
+          - name: service--notification-container
+            image: $awsaccountid.dkr.ecr.$awseksregion.amazonaws.com/$awsecrrepository:service--notification-$githash
+            env:
+              - name: SPRING_PROFILES_ACTIVE
+                value: "dev"
+              - name: CONFIG_SERVER
+                value: "http://svc-swapiconfigserver.corporativo.svc.cluster.local/config/"
+            ports:
+              - containerPort: 5000
+              - containerPort: 9090
+            livenessProbe:
+              httpGet:
+                path: /actuator/health
+                port: 9090
+              initialDelaySeconds: 120
+              periodSeconds: 60
+              timeoutSeconds: 10
+              successThreshold: 1
+              failureThreshold: 2
+            readinessProbe:
+              httpGet:
+                path: /actuator/health
+                port: 9090
+              initialDelaySeconds: 120
+              periodSeconds: 10
+              timeoutSeconds: 10
