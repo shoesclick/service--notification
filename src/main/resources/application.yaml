@@ -27,14 +27,6 @@ spring:
       multiplier: 1.5
       compatibility-verifier:
         enabled=false:
-
-info:
-  app:
-    name: "@project.name@"
-    version: "@project.version@"
-    description: "@project.description@ "
-    base-package: "com.shoesclick.service.notification"
-
   jpa:
     properties:
       hibernate:
@@ -68,6 +60,12 @@ info:
     password: {EMAIL_PASSWORD:cccc}
     port: '587'
 
+info:
+  app:
+    name: "@project.name@"
+    version: "@project.version@"
+    description: "@project.description@ "
+    base-package: "com.shoesclick.service.notification"
 
 rabbitmq:
   exchange: shoesclick_exchange
