@@ -12,7 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static com.shoesclick.service.notification.service.mock.OrderNotificationMock.getOrderNotification;
+import static com.shoesclick.service.notification.service.mock.NotificationMock.getOrderNotification;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
