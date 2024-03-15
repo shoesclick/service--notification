@@ -23,7 +23,7 @@ public class NotificationConsumer {
     }
 
 
-    @KafkaListener(topics = "notification-topic", groupId = "group-1")
+    @KafkaListener(topics = "kfk-order-notification", groupId = "grp-order-notification")
     @RetryableTopic(
             backoff = @Backoff(value = 3000L),
             attempts = "5",

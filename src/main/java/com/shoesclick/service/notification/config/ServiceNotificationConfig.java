@@ -1,6 +1,6 @@
 package com.shoesclick.service.notification.config;
 
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import com.shoesclick.service.notification.config.properties.KafkaProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
