@@ -2,14 +2,15 @@ package com.shoesclick.service.notification.consumer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.shoesclick.service.notification.config.properties.KafkaProperties;
-import com.shoesclick.service.notification.exception.BusinessException;
 import com.shoesclick.service.notification.mapper.NotificationMapper;
 import com.shoesclick.service.notification.service.NotificationService;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.annotation.RetryableTopic;
-import org.springframework.retry.annotation.Backoff;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 import com.shoesclick.notification.avro.NotificationAvro;
+import org.springframework.kafka.support.KafkaHeaders;
+
 @Service
 public class NotificationConsumer {
 
@@ -27,13 +28,8 @@ public class NotificationConsumer {
 
 
     @KafkaListener(topics = "kfk-order-notification", groupId = "grp-order-notification")
-    @RetryableTopic(
-            backoff = @Backoff(value = 3000L),
-            attempts = "5",
-            autoCreateTopics = "true",
-            include = BusinessException.class
-    )
-    public void process(NotificationAvro notificationAvro) throws JsonProcessingException {
+    public void process(@Payload NotificationAvro notificationAvro, @Header(name = KafkaHeaders.RECEIVED_KEY) String key) throws JsonProcessingException {
+        System.out.println("CHAVE: "+ key);
         notificationService.process(notificationMapper.map(notificationAvro));
     }
 
