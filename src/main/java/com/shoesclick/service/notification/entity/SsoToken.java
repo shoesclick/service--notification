@@ -3,21 +3,27 @@ package com.shoesclick.service.notification.entity;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class SsoToken {
+import java.io.Serial;
+import java.io.Serializable;
 
-    private String accesToken;
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+public class SsoToken implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -1470280067166215368L;
+
+    private String accessToken;
 
     private String expiresIn;
 
     private String tokenType;
 
-    public String getAccesToken() {
-        return accesToken;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public SsoToken setAccesToken(String accesToken) {
-        this.accesToken = accesToken;
+    public SsoToken setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
         return this;
     }
 
