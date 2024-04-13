@@ -13,7 +13,7 @@ spring:
   main:
     banner-mode: 'OFF'
   config:
-    import: "configserver:http://server--config-service.shoes-eks.svc.cluster.local:8888/config"
+    import: "configserver:http://svc-server--config-service.shoes-eks.svc.cluster.local:8888/config"
   cloud:
     allow-override: true
     config:
@@ -41,11 +41,6 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: basic
-
-backend:
-  services:
-    customerUrl: http://localhost:8081/
-    productUrl: http://localhost:8082/
 
 management:
   server:
