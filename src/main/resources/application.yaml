@@ -47,13 +47,6 @@ backend:
     customerUrl: http://localhost:8081/
     productUrl: http://localhost:8082/
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://server--discovery-stack.shoes-eks.svc.cluster.local:8762/eureka/
-  instance:
-    prefer-ip-address: 'true'
-
 management:
   server:
     port: 9090
