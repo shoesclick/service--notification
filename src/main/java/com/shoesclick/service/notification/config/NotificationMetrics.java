@@ -23,7 +23,7 @@ public class NotificationMetrics {
     }
 
     public void incrementNotificationSuccessCount() {
-        notificationErrors.increment();
+        notificationProcess.increment();
     }
 
     public void incrementNotificationErrorCount() {
